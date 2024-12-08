@@ -10,7 +10,9 @@ export default function page() {
       {/* <Navbar /> */}
       <section className='container mx-auto mb-10 flex flex-col md:flex-row'>
         <div className='my-5 w-full px-5 md:w-1/4'>
-          <Filter />
+          <Suspense>
+            <Filter />
+          </Suspense>
         </div>
         <div className='w-full py-5 md:w-3/4'>
           <Suspense>
