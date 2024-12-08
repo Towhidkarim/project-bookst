@@ -2,7 +2,7 @@ import BookList from '@/components/layout/allbookspage/booklist';
 import Filter from '@/components/layout/allbookspage/filter';
 import Footer from '@/components/layout/footer';
 import Navbar from '@/components/layout/navbar';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 export default function page() {
   return (
@@ -13,7 +13,9 @@ export default function page() {
           <Filter />
         </div>
         <div className='w-full py-5 md:w-3/4'>
-          <BookList />
+          <Suspense>
+            <BookList />
+          </Suspense>
         </div>
       </section>
       <Footer />

@@ -15,6 +15,7 @@ import { db } from '@/lib/db';
 import { listingTable } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
 import Image from 'next/image';
+import AddToCartButton from '@/components/ui/add-to-cart';
 
 export default async function page({
   params,
@@ -45,6 +46,7 @@ export default async function page({
     listingStatus,
     ownerName,
     description,
+    price,
   } = bookData[0];
   return (
     <main>
@@ -87,14 +89,17 @@ export default async function page({
               {' '}
               by <span className='font-medium capitalize'>{authorName} </span>
             </h4>
-            <h4 className='mb-4 text-primary'>{`Category`}</h4>
-            <h2 className='my-4 text-3xl font-semibold md:text-4xl'>৳{250}</h2>
+            <h4 className='mb-4 text-primary'>{category}</h4>
+            <h2 className='my-4 text-3xl font-semibold md:text-4xl'>
+              ৳{price}
+            </h2>
             <h2 className='text-muted-foreground'>Sold by {ownerName}</h2>
             <h3 className='mb-3 text-green-600'>{listingStatus}</h3>
             <div className='mt-10 flex w-full flex-col justify-start gap-5 md:flex-row'>
-              <Button className='rounded-full' size='lg'>
+              {/* <Button className='rounded-full' size='lg'>
                 Add to Cart
-              </Button>
+              </Button> */}
+              <AddToCartButton bookName={bookName} id={bookID} price={price} />
               <Button variant='outline' size='lg' className='rounded-full'>
                 Contact Seller
               </Button>
