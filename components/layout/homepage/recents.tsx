@@ -1,10 +1,26 @@
+'use client';
 import ItemCard from '@/components/ui/item-card';
 import ItemCardSkeleton from '@/components/ui/Item-card-skeleton';
 import { ScrollBar, ScrollArea } from '@/components/ui/scroll-area';
+import GetListingsAction from '@/lib/actions/GetListingsAction';
+import { categories } from '@/lib/constants';
+import { useQuery } from '@tanstack/react-query';
 
 import React from 'react';
 
 export default function Recents() {
+  const { data: bookData, isLoading } = useQuery({
+    queryFn: async () =>
+      GetListingsAction({
+        status: ['available'],
+        category: [...categories],
+        count: 4,
+        offset: 0,
+      }),
+    queryKey: ['recents'],
+    staleTime: 1000 * 60 * 2,
+  });
+
   return (
     <section className='my-30'>
       <div className='container mx-auto overflow-hidden px-5 md:max-w-[80svw]'>
@@ -13,9 +29,13 @@ export default function Recents() {
         <br />
         <ScrollArea className='w-full'>
           <div className='my-5 flex flex-row items-center justify-start gap-12 px-5'>
-            <ItemCardSkeleton />
-            <ItemCardSkeleton />
-            <ItemCardSkeleton />
+            {bookData && (
+              <>
+                {bookData.map((item, index) => (
+                  <ItemCard key={index} {...item} />
+                ))}
+              </>
+            )}
 
             {/* {categories.map((value, index) => (
           <div

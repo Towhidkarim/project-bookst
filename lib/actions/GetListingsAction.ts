@@ -1,6 +1,6 @@
 'use server';
 
-import { and, inArray } from 'drizzle-orm';
+import { and, desc, inArray } from 'drizzle-orm';
 import { db } from '../db';
 import { listingTable } from '../db/schema';
 import { categories } from '../constants';
