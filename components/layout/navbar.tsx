@@ -34,7 +34,9 @@ export default function Navbar() {
           <Link href={'/'} className='text-2xl font-bold text-primary'>
             {siteName}
           </Link>
-          <SearchBar />
+          <div className='hidden md:block'>
+            <SearchBar />
+          </div>
         </div>
         <ul className='hidden -translate-x-12 flex-row gap-4 font-medium md:flex'>
           <ul>
@@ -101,6 +103,9 @@ export default function Navbar() {
                 <SheetTitle className='text-center'>Menu</SheetTitle>
 
                 <ul className='mx-10 flex h-[400px] flex-col items-center justify-around pt-10 text-xl'>
+                  <li>
+                    <SearchBar />
+                  </li>
                   {mobileMenuOpts.map((item, index) => (
                     <li key={index}>
                       <SheetClose asChild>

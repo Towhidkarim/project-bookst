@@ -19,7 +19,7 @@ export default function Categories() {
         <h1 className='text-lg font-bold'>Find By Category</h1>
         <hr className='my-2 max-w-24 rounded-xl border-muted bg-gray-300 p-1' />
         <br />
-        <div className='grid grid-flow-col justify-center gap-5 overflow-x-auto'>
+        <div className='grid grid-flow-col gap-5 overflow-x-auto'>
           {categories.map((value, index) => (
             <Link
               href={`/allbooks?cat=${value}`}

@@ -14,18 +14,18 @@ export default function SearchBar() {
         e.preventDefault();
         router.push(`/search?query=${searchValue.current}`);
       }}
-      className='hidden flex-row gap-0 md:flex'
+      className='flex flex-col gap-3 md:flex-row md:gap-0'
     >
       <Input
         onChange={(e) => (searchValue.current = e.target.value)}
         placeholder='Enter search query'
         min={3}
         required
-        className='rounded-2xl rounded-r-none bg-muted md:w-72'
+        className='rounded-2xl bg-muted md:w-72 md:rounded-r-none'
       />
       <Button
         type='submit'
-        className='flex items-center justify-center gap-2 rounded-2xl rounded-l-none'
+        className='flex items-center justify-center gap-2 rounded-2xl md:rounded-l-none'
       >
         <Search />
         Search
