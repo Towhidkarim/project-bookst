@@ -1,5 +1,6 @@
 import SignInForm from '@/components/layout/signinout/signinform';
-import { siteName } from '@/lib/constants';
+import { routes, siteName } from '@/lib/constants';
+import Link from 'next/link';
 import React from 'react';
 
 export default function page() {
@@ -11,6 +12,16 @@ export default function page() {
         </h1>
         <br />
         <SignInForm />
+        <p className='mt-6 text-sm'>
+          Don't have an account?{' '}
+          <Link
+            href={routes.signUp}
+            className='font-semibold text-primary hover:underline'
+          >
+            {' '}
+            Sign Up Here
+          </Link>{' '}
+        </p>
       </div>
     </main>
   );

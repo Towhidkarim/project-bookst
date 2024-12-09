@@ -8,9 +8,25 @@ import { routes, siteName } from '@/lib/constants';
 import { useCartContext } from '@/hooks/useCartContext';
 import { Badge } from '../ui/badge';
 import CartButton from '../ui/cart-button';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import SearchBar from './searchbar';
 
 export default function Navbar() {
   const { cartItems } = useCartContext();
+  const mobileMenuOpts = [
+    { title: 'All Books', url: routes.allBooks },
+    { title: 'Account', url: routes.dashboard },
+    { title: 'Sign In', url: routes.signIn },
+    { title: 'Sign Up', url: routes.signUp },
+  ];
   return (
     <nav className='w-full bg-background px-3 py-6 shadow-sm'>
       <div className='container mx-auto flex flex-row items-center justify-between'>
@@ -18,16 +34,7 @@ export default function Navbar() {
           <Link href={'/'} className='text-2xl font-bold text-primary'>
             {siteName}
           </Link>
-          <div className='hidden flex-row gap-0 md:flex'>
-            <Input
-              placeholder='Enter search query'
-              className='rounded-2xl rounded-r-none bg-muted md:w-72'
-            />
-            <Button className='flex items-center justify-center gap-2 rounded-2xl rounded-l-none'>
-              <Search />
-              Search
-            </Button>
-          </div>
+          <SearchBar />
         </div>
         <ul className='hidden -translate-x-12 flex-row gap-4 font-medium md:flex'>
           <ul>
@@ -79,9 +86,35 @@ export default function Navbar() {
             </Button>
           </li>
         </ul>
-        <Button className='block md:hidden' variant='ghost'>
-          <Menu className='scale-125' />
-        </Button>
+        <div className='flex flex-row items-center justify-center gap-3'>
+          <span className='block md:hidden'>
+            <CartButton />
+          </span>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button className='block md:hidden' variant='ghost'>
+                <Menu className='scale-125' />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle className='text-center'>Menu</SheetTitle>
+
+                <ul className='mx-10 flex h-[400px] flex-col items-center justify-around pt-10 text-xl'>
+                  {mobileMenuOpts.map((item, index) => (
+                    <li key={index}>
+                      <SheetClose asChild>
+                        <Link href={item.url} className='capitalize'>
+                          {item.title}
+                        </Link>
+                      </SheetClose>
+                    </li>
+                  ))}
+                </ul>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </nav>
   );
