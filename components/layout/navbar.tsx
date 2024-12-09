@@ -56,8 +56,11 @@ export default function Navbar() {
             </Link>
           </ul>
           <ul>
-            <Link href='#' className='transition-opacity hover:opacity-85'>
-              About
+            <Link
+              href={routes.signIn}
+              className='transition-opacity hover:opacity-85'
+            >
+              Sign In
             </Link>
           </ul>
         </ul>

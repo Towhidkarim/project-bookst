@@ -9,6 +9,6 @@ export default async function layout({
   children: React.ReactNode;
 }) {
   const session = await validateRequest();
-  if (!session) redirect(routes.signIn);
+  if (!session.user) redirect(routes.signIn);
   return <main>{children}</main>;
 }
